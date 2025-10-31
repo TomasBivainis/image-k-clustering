@@ -1,0 +1,46 @@
+# Virtual Environment folder
+.venv
+
+# Environment files
+.env
+.env.*
+__pycache__
+data/
+temp/
+
+# Build output
+dist/
+build/
+tmp/
+temp/
+.cache/
+out/
+coverage/
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Compiled files
+*.class
+*.pyc
+*.pyo
+*.exe
+*.dll
+*.o
+*.obj
+*.so
+*.a
+*.out
+
+# System files
+.DS_Store
+Thumbs.db
