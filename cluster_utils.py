@@ -19,6 +19,15 @@ class Cluster(object):
     self.centroid = np.floor(np.average(self.data, axis=0))
     
     return self.centroid
+  
+  def get_SSE(self):
+    centroid = self.get_centroid()
+    SSE = 0
+    
+    for data_point in self.data:
+      SSE += distance(data_point, centroid)
+      
+    return SSE
 
 def init_cluster_centroids(points: np.array, clusters, k):
   clusters = []
@@ -40,7 +49,7 @@ def k_means_clustering(points, clusters, k=3):
     
   centroids = [cluster.get_centroid() for cluster in clusters]
   
-  print(centroids)
+  #print(centroids)
   
   for cluster in clusters:
     cluster.data = []
@@ -60,6 +69,38 @@ def k_means_clustering(points, clusters, k=3):
   
   return clusters
 
+def calculate_clustering_SSE(clusters):
+  SSE = 0
+  
+  for cluster in clusters:
+    SSE += cluster.get_SSE()
+    
+  return SSE
+
+def train_clusters(data_points, k=3, n_iterations=10, number_of_initialization=3):
+  best_clusters = []
+  minimum_SSE = -1
+  
+  for _i in range(number_of_initialization):
+    clusters = []
+    past_clusters = []
+    
+    for _j in range(n_iterations):
+      clusters = k_means_clustering(data_points, clusters, k)
+      
+      if np.array_equal(clusters, past_clusters):
+        break
+        
+      past_clusters = clusters.copy()
+    
+    current_SSE = calculate_clustering_SSE(clusters)
+    
+    if minimum_SSE == -1 or minimum_SSE > current_SSE:
+      minimum_SSE = current_SSE
+      best_clusters = clusters
+  
+  return best_clusters
+  
 if __name__ == "__main__":
   clu = Cluster([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
   assert np.array_equal(clu.get_centroid(), np.array([2, 3, 4]))

@@ -3,44 +3,31 @@ import data_utils
 import cluster_utils
 import numpy as np
 
-if __name__ == '__main__':
-  filenames = file_utils.get_all_image_names()
-  n_iterations = 10
-  k = 4
+def colour_image_with_k_means(filename, k, n_iterations, n_initializations):
+  data_points = data_utils.extract_data_points(filename)
+  
+  clusters = cluster_utils.train_clusters(data_points, k, n_iterations, n_initializations)
+  
+  new_data_points = data_utils.colour_image(data_points, clusters)
+  
+  data_utils.convert_data_points_to_image(filename, new_data_points)
 
-  filename = filenames[2]
+def colour_image_with_specific_colours(filename, colours):
+  data_points = data_utils.extract_data_points(filename)
   
-  points = data_utils.extract_data_points(filename)
-  #print(points)
   clusters = []
-  past_clusters = []
-  
-  for _ in range(n_iterations):
-    clusters = cluster_utils.k_means_clustering(points, clusters, k)
+  for color in colours:
+    clusters.append(cluster_utils.Cluster([color]))
     
-    if np.array_equal(clusters, past_clusters):
-      break
-      
-    past_clusters = clusters.copy()
+  new_data_points = data_utils.colour_image(data_points, clusters)
   
-  centroids = [cluster.get_centroid() for cluster in clusters]
+  data_utils.convert_data_points_to_image(filename, new_data_points)
   
-  new_points = points.copy()
+if __name__ == '__main__':
+  print("bug")
   
-  for i in range(len(new_points)):
-    closest_centroid = centroids[0]
-    min_distance = cluster_utils.distance(new_points[i], closest_centroid)
-    
-    for centroid in centroids:
-      current_distance = cluster_utils.distance(new_points[i], centroid)
-      
-      if current_distance < min_distance:
-        closest_centroid = centroid
-        min_distance = current_distance
-    
-    new_points[i] = closest_centroid
-    
-  data_utils.convert_data_points_to_image(filename, new_points)
+
+  
     
     
     
