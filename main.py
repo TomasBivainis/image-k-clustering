@@ -6,9 +6,9 @@ import numpy as np
 if __name__ == '__main__':
   filenames = file_utils.get_all_image_names()
   n_iterations = 10
-  k = 5
+  k = 4
 
-  filename = filenames[1]
+  filename = filenames[2]
   
   points = data_utils.extract_data_points(filename)
   #print(points)
