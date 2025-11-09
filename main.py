@@ -1,7 +1,5 @@
-import file_utils
 import data_utils
 import cluster_utils
-import numpy as np
 
 def colour_image_with_k_means(filename, k, n_iterations, n_initializations):
   data_points = data_utils.extract_data_points(filename)

@@ -1,6 +1,5 @@
 import imageio.v3 as iio
 import numpy as np
-import cluster_utils
 
 def extract_data_points(filename: str):
   image = iio.imread(f'data/{filename}')
