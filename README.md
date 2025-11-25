@@ -10,7 +10,7 @@ It then recolors the entire image so that every pixel is replaced by the **neare
 - 🧠 Uses **K-Means clustering** to find dominant colors in an image.
 - 🎨 Reconstructs the image using only those _k_ colors.
 - 📊 Supports adjustable `k` (number of colors).
-- 💾 Saves both the **quantized image** and optionally a **palette preview**.
+- 💾 Saves both the **quantized image**.
 - ⚡ Works with most common image formats (PNG, JPG, etc.).
 
 ---
@@ -19,9 +19,7 @@ It then recolors the entire image so that every pixel is replaced by the **neare
 
 - **Python 3.x**
 - **NumPy** — fast numerical computation
-- **scikit-learn** — KMeans clustering
-- **Pillow (PIL)** — image processing
-- **matplotlib** _(optional)_ — for displaying images and color palettes
+- **imageio.v3** — image processing
 
 ---
 
@@ -35,15 +33,6 @@ cd image-color-quantizer
 pip install -r requirements.txt
 ```
 
-Example `requirements.txt`:
-
-```
-numpy
-scikit-learn
-pillow
-matplotlib
-```
-
 ---
 
 ## 🖼️ Usage
@@ -51,7 +40,7 @@ matplotlib
 Basic command-line usage:
 
 ```bash
-python color_quantizer.py --input input.jpg --k 8 --output output.jpg
+python main.py --input input.jpg --k 8 --output output.jpg
 ```
 
 ### Arguments
@@ -60,21 +49,20 @@ python color_quantizer.py --input input.jpg --k 8 --output output.jpg
 | ---------- | ----------------------------- | --------------- |
 | `--input`  | Path to the input image       | _required_      |
 | `--output` | Path to save the output image | `quantized.png` |
-| `--k`      | Number of clusters (colors)   | `8`             |
-| `--show`   | Show before/after comparison  | `False`         |
+| `--k`      | Number of clusters (colors)   | `3`             |
 
 ---
 
 ## 🔍 Example
 
 Input:
-![Original Image](examples/original.jpg)
+![Original Image](images/BobbyFischer.jpg)
+
+Output (k=3):
+![Quantized Image with 3 Colours](images/BobbyFischerK3.png)
 
 Output (k=6):
-![Quantized Image](examples/quantized.jpg)
-
-Palette (optional):
-![Palette](examples/palette.png)
+![Quantized Image with 6 Colours](images/BobbyFischerK6.png)
 
 ---
 
@@ -99,21 +87,11 @@ Palette (optional):
 ## 🛠️ Future Improvements
 
 - Add GPU acceleration with CuML or PyTorch
-- Implement median-cut quantization for comparison
-- Interactive web demo using Streamlit or Gradio
 
 ---
 
 ## 📝 License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 💡 Example Output
-
-| Original                   | Quantized (k=4)      | Quantized (k=8)      |
-| -------------------------- | -------------------- | -------------------- |
-| ![](examples/original.jpg) | ![](examples/k4.jpg) | ![](examples/k8.jpg) |
 
 ---
