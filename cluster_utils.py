@@ -77,11 +77,11 @@ def calculate_clustering_SSE(clusters):
     
   return SSE
 
-def train_clusters(data_points, k=3, n_iterations=10, number_of_initialization=3):
+def train_clusters(data_points, k=3, n_iterations=10, n_initializations=3):
   best_clusters = []
   minimum_SSE = -1
   
-  for _i in range(number_of_initialization):
+  for _i in range(n_initializations):
     clusters = []
     past_clusters = []
     
