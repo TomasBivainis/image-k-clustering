@@ -55,14 +55,9 @@ python main.py --input input.jpg --k 8 --output output.jpg
 
 ## 🔍 Example
 
-Input:
-![Original Image](images/BobbyFischer.jpg)
-
-Output (k=3):
-![Quantized Image with 3 Colours](images/BobbyFischerK3.png)
-
-Output (k=6):
-![Quantized Image with 6 Colours](images/BobbyFischerK6.png)
+| Original                     | Quantized (k=3)                | Quantized (k=6)                |
+| ---------------------------- | ------------------------------ | ------------------------------ |
+| ![](images/BobbyFischer.jpg) | ![](images/BobbyFischerK3.png) | ![](images/BobbyFischerK6.png) |
 
 ---
 
@@ -92,6 +87,6 @@ Output (k=6):
 
 ## 📝 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](https://github.com/TomasBivainis/image-k-clustering/blob/main/LICENSE).
 
 ---
